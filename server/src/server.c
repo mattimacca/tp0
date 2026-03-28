@@ -6,6 +6,7 @@ int main(void) {
 	int server_fd = iniciar_servidor();
 	log_info(logger, "Servidor listo para recibir al cliente");
 	int cliente_fd = esperar_cliente(server_fd);
+	//handshake(server_fd);
 
 	t_list* lista;
 	while (1) {
@@ -29,6 +30,22 @@ int main(void) {
 	}
 	return EXIT_SUCCESS;
 }
+
+/*void handshake(int socketServer){
+	size_t bytes;
+
+	int32_t handshakee;
+	int32_t resultOk = 0;
+	int32_t resultError = -1;
+
+	bytes = recv(socketServer, &handshakee, sizeof(int32_t), MSG_WAITALL);
+	
+	if (handshakee == 1) {
+    	bytes = send(socketServer, &resultOk, sizeof(int32_t), 0);
+	} else {
+   		bytes = send(socketServer, &resultError, sizeof(int32_t), 0);
+	}
+}*/
 
 void iterator(char* value) {
 	log_info(logger,"%s", value);
